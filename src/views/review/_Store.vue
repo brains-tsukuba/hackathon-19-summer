@@ -1,7 +1,8 @@
-/** 使われていない */
 <template>
   <v-container fluid>
-    <div class="display-2 text-center">Shop Number .{{ $route.params.id }}</div>
+    <div class="display-2 text-center">
+      Shop Number .{{ $route.params.shopid }}
+    </div>
 
     <div class="display-2 text-center">{{ title }}</div>
 
@@ -13,8 +14,10 @@
 </template>
 
 <script>
+import { db } from '@/plugins/db'
+
 export default {
-  name: 'Review',
+  name: 'ReviewByStore',
   data: function() {
     return {
       title: 'ラーメン屋〇〇',
@@ -26,15 +29,29 @@ export default {
       ],
     }
   },
+  // computed: {
+  //   shopName: function() {
+  //     return this.shop[this.$route.params.shopid];
+  //   }
+  // },
   created: function() {
-    console.log(this.$route.params.shopid)
-    const shopRef = db
-      .ref(`review/${this.$route.params.shopid}`)
+    const reviewRef = db.ref('review')
+    reviewRef
+      .orderByChild('shop')
+      .equalTo(this.$route.params.shopid)
       .once('value', (snapshot) => {
         const received = snapshot.val()
-        //this.shop = receivedShop;
-        console.log(received)
+        this.reviews = Object.entries(received).map(([key, value]) => ({
+          user: 'anonymus',
+          item: value.content,
+          date: value.date,
+        }))
       })
+    const thisShopRef = db.ref(`shop/${this.$route.params.shopid}`)
+    thisShopRef.once('value', (snapshot) => {
+      const received = snapshot.val()
+      this.title = received.name
+    })
   },
 }
 </script>

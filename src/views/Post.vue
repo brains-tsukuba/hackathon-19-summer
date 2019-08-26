@@ -1,4 +1,3 @@
-
 <template>
   <v-container fluid>
     <v-layout>
@@ -14,72 +13,70 @@
         </v-row>
 
         <v-textarea
-          name="input-7-1"
           filled
           label="Review"
           auto-grow
           v-model="reviewText"
-          placeholder="お店に行った感想を入力してください。" 
-          />
+          placeholder="お店に行った感想を入力してください。"
+        />
         <v-col class="text-center" cols="12" sm="4">
           <div class="my-2">
             <v-btn large @click="handleSubmit()">送信</v-btn>
           </div>
         </v-col>
-
       </v-flex>
     </v-layout>
-  </v-container>  
+  </v-container>
 </template>
 <script>
-import { db } from "@/plugins/db"
+import { db } from '@/plugins/db'
 
-export default {      
+export default {
   data: function() {
     return {
-      reviewText: "",
+      reviewText: '',
       shop: {},
-      shopName: ""
+      shopName: '',
     }
   },
 
   computed: {
-    items : function() {
+    items: function() {
       return Object.entries(this.shop).map(([key, value]) => value.name)
-    }
+    },
   },
 
   created: function() {
-    const shopRef = db.ref('shop').once('value',(snapshot) => {
-      const receivedShop = snapshot.val();
-      this.shop = receivedShop;
+    const shopRef = db.ref('shop').once('value', (snapshot) => {
+      const receivedShop = snapshot.val()
+      this.shop = receivedShop
     })
   },
   methods: {
     handleSubmit: function() {
-      const reviewRef = db.ref('review');
-      const shopName = this.shopName;
-      const shop = this.shop;
-      const content = this.reviewText;
-      const date = new Date();
-      const ymd = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
-      const key = Object.keys(shop).find(key => shop[key].name === shopName );
-      if(key) {
+      const reviewRef = db.ref('review')
+      const shopName = this.shopName
+      const shop = this.shop
+      const content = this.reviewText
+      const date = new Date()
+      const ymd = `${date.getFullYear()}-${date.getMonth() +
+        1}-${date.getDate()}`
+      const key = Object.keys(shop).find((key) => shop[key].name === shopName)
+      if (key) {
         const newRef = reviewRef.push()
         newRef.set({
           shop: key,
           content,
-          date: ymd
+          date: ymd,
         })
         this.$router.push(`/review/${key}/${newRef.key}`)
       }
-      
-    }
-  }
+    },
+  },
 }
 </script>
 <style lang="scss">
 .v-input__control {
-  margin:0 auto;
+  margin: 0 auto;
 }
 </style>
