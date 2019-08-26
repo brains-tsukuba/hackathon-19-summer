@@ -1,9 +1,9 @@
 <template>
   <v-container fluid>
 
-  <div class="display-2 text-center">Shop Number .{{ $route.params.id }}</div>
+  <div class="display-2 ma-4 text-center">Shop Number .{{ $route.params.id }}</div>
 
-  <div class="display-2 text-center"> {{title}}</div>
+  <div class="display-2 ma-4 text-center"> {{title}}</div>
   
   <div class="evaluation">
   <p class="text-justify">{{text}}</p>
@@ -27,7 +27,6 @@ export default {
 
 <style lang="scss">
   .display-2{
-    margin:50px 0;
     font-family:serif;
   }
   .evaluation{

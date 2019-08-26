@@ -2,11 +2,11 @@
   <v-app>
     <v-app-bar app>
       <v-toolbar-title class="headline text-uppercase">
-        <span>めしつくば</span>
+        <router-link tag="a" to="/" class="black--text font-weight-black">めしつくば</router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <router-link tag="a" to="/about">about</router-link>
-      <router-link tag="a" to="/review">review</router-link>
+      <router-link tag="a" to="/review/reviewbystore">review</router-link>
     </v-app-bar>
 
     <v-content>
@@ -18,7 +18,7 @@
 <script>
 
 export default {
-  name: 'App',
+  name: 'App'
 };
 </script>
 

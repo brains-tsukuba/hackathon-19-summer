@@ -18,20 +18,35 @@
 </template>
 
 <script>
+import { db } from "@/plugins/db"
+
 export default {
-  name: "Review",
+  name: "ReviewByStore",
   data: function() {
     return {
-      title: "ラーメン屋〇〇",
-      reviews:[{user:"A", item:"美味しかった"}, {user:"B", item:"あまり好みじゃない"}, {user:"C", item:"落ち着いた雰囲気だった"},{user:"D", item:"また行きたい"}]
+      title: "",
+      reviews:[]
     }
   },
+  // computed: {
+  //   shopName: function() {
+  //     return this.shop[this.$route.params.shopid];
+  //   }
+  // },
   created: function() {
-    console.log(this.$route.params.shopid)
-    const shopRef = db.ref(`review/${this.$route.params.shopid}`).once('value',(snapshot) => {
+    const reviewRef = db.ref('review')
+    reviewRef.orderByChild("shop").equalTo(this.$route.params.shopid).once('value',(snapshot) => {
       const received = snapshot.val();
-      //this.shop = receivedShop;
-      console.log(received)
+      this.reviews = Object.entries(received).map(([key, value]) => ({
+        user: 'anonymus',
+        item: value.content,
+        date: value.date
+      }))
+    });
+    const thisShopRef = db.ref(`shop/${this.$route.params.shopid}`);
+    thisShopRef.once('value',snapshot => {
+      const received = snapshot.val();
+      this.title = received.name
     })
   },
 }
