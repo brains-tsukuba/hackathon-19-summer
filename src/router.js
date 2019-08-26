@@ -2,6 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
 import Review from "./views/Review.vue";
+import Single from "./views/Single.vue";
 
 Vue.use(Router);
 
@@ -27,6 +28,11 @@ export default new Router({
       path: "/review",
       name: "review",
       component: Review
+    },
+    {
+      path: "/review/:id",
+      name: "reviewsingle",
+      component: Single
     }
   ]
 });
