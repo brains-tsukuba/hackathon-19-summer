@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
-import Review from "./views/Review.vue";
+import Post from "./views/Post.vue";
 import Single from "./views/Single.vue";
 
 Vue.use(Router);
@@ -25,14 +25,15 @@ export default new Router({
         import(/* webpackChunkName: "about" */ "./views/About.vue")
     },
     {
-      path: "/review",
-      name: "review",
-      component: Review
+      path: "/post",
+      name: "Post",
+      component: Post
     },
     {
       path: "/review/:id",
       name: "reviewsingle",
       component: Single
     }
+    
   ]
 });
