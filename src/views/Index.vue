@@ -2,7 +2,7 @@
   <div>
     <v-parallax src="https://cdn.vuetifyjs.com/images/parallax/material.jpg">
       <v-layout align-center column justify-center>
-        <h1 class="title">めしつくば</h1>
+        <h1 class="display-2">めしつくば</h1>
       </v-layout>
     </v-parallax>
     <v-layout wrap>
@@ -45,7 +45,7 @@
 </script>
 
 <style lang="scss">
-.title{
+.display-2{
   width: 93px;
   height: 24px;
   left: 142px;
