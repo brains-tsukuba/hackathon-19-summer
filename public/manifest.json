@@ -1,6 +1,6 @@
 {
-  "name": "hackathon-19-summer",
-  "short_name": "hackathon-19-summer",
+  "name": "めしつくば",
+  "short_name": "飯つくば",
   "icons": [
     {
       "src": "./img/icons/android-chrome-192x192.png",
@@ -15,6 +15,6 @@
   ],
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#4DBA87"
+  "background_color": "#ccff90",
+  "theme_color": "#ff4081"
 }

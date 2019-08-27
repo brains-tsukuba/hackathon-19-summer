@@ -67,7 +67,6 @@ export default {
         const diff = Math.pow(latitude - value.latitude,2) + Math.pow(longitude - value.longitude,2) < 0.00005
         return diff
       })
-      console.log(res)
       this.nearShop = res;
 
     },
@@ -132,4 +131,5 @@ export default {
 .v-input__control {
   margin: 0 auto;
 }
+
 </style>

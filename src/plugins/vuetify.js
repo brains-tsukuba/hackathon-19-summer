@@ -15,8 +15,7 @@ export default new Vuetify({
         primary: "#FF80AB",
         secondary: "#CCFF90",
         accent: "#CE93D8",
-        error: "#ff1744",
-        link: "#CCFF90"
+        error: "#ff1744"
       },
       dark: {
         primary: "#880E4F",
