@@ -5,6 +5,7 @@ import About from "./views/About.vue";
 import Post from "./views/Post.vue";
 import ReviewByUser from "./views/review/_User.vue";
 import ReviewByStore from "./views/review/_Store.vue";
+import Login from './views/Login.vue';
 
 Vue.use(Router);
 
@@ -36,6 +37,11 @@ export default new Router({
       path: "/review/:shopid",     /** お店ごとの投稿一覧 */
       name: "reviewbystore",
       component: ReviewByStore
+    },
+    {
+      path: "/login",
+      name: 'login',
+      component: Login
     }
   ]
 });

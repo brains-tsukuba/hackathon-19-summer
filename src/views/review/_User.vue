@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { db } from '@/plugins/db'
+import { db } from '@/main'
 
 export default {
   name: 'ReviewByUser',
