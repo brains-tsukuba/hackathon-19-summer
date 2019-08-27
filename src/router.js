@@ -5,6 +5,7 @@ import About from "./views/About.vue";
 import Post from "./views/Post.vue";
 import ReviewByUser from "./views/review/_User.vue";
 import ReviewByStore from "./views/review/_Store.vue";
+import ReviewAll from './views/review/_All.vue';
 import Login from './views/Login.vue';
 import Logout from './views/Logout.vue';
 
@@ -29,6 +30,11 @@ export default new Router({
       path: "/post",               /** 投稿・共有画面 */
       name: "post",
       component: Post
+    },
+    {
+      path: "/review",
+      name: "reviewAll",
+      component: ReviewAll
     },
     {
       path: "/review/:shopid/:id", /** 投稿 */
