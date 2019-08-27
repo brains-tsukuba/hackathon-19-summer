@@ -51,7 +51,7 @@ const actions = {
   },
   logout({commit}) {
     commit('updateAccessToken','')
-    commit('pdateUserName', '')
+    commit('updateUserName', '')
   }
 }
 
