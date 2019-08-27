@@ -19,7 +19,6 @@ export const db = app.database()
 export const auth = app.auth()
 export const provider = new firebase.auth.TwitterAuthProvider();
 
-
 Vue.config.productionTip = false;
 
 new Vue({
