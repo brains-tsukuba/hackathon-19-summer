@@ -7,6 +7,9 @@
       <v-spacer></v-spacer>
       <router-link tag="a" to="/about">about</router-link>
       <router-link tag="a" to="/review/reviewbystore">review</router-link>
+      <div v-if="authenticated">{{username}} </div>
+      <router-link v-if="authenticated" tag="a" to="/logout">logout</router-link>
+      <router-link v-else tag="a" to="/login">login</router-link>
     </v-app-bar>
 
     <v-content>
@@ -16,9 +19,22 @@
 </template>
 
 <script>
-
+import { mapGetters } from 'vuex'
 export default {
   name: 'App',
+  computed: {
+    ...mapGetters('auth', {
+      authenticated: "authenticated",
+      username: "username"
+    })
+  },
+  created() {
+    const token = localStorage.getItem('access_token');
+    const username = localStorage.getItem('username');
+    if(!!token && !!username) {
+      this.$store.dispatch('auth/login',{token,username})
+    }
+  }
 };
 </script>
 
