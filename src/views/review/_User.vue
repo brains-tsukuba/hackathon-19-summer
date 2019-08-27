@@ -1,13 +1,13 @@
 <template>
   <v-container fluid>
-    <div class="display-2 ma-4 text-center">
-      Shop Number .{{ $route.params.shopid }}
-    </div>
-
-    <div class="display-2 ma-4 text-center">{{ title }}</div>
+    <div class="display-2 ma-4 text-center">{{ title }}について</div>
 
     <div class="elevation-2">
       <p class="text-justify">{{ text }}</p>
+      
+    </div>
+    <div>
+      <p class="text-justify">by {{ user }} , at {{date}}</p>
     </div>
   </v-container>
 </template>
@@ -19,33 +19,35 @@ export default {
   name: 'ReviewByUser',
   data: function() {
     return {
-      fireShop: {},
-      fireReviews: {},
-      title: 'ラーメン屋〇〇',
-      text: '美味しかった！！',
+      title: '',
+      text: '',
+      user: '',
+      date: ''
     }
   },
 
-  computed: {
-    shops: function() {
-      return Object.entries(this.fireShop).map(([key, value]) => value.name)
-    },
-    reviews: function() {
-      return Object.entries(this.fireReview).map(([key, value]) => value.name)
-    },
-    shopName: function() {
-      return this.shop[this.$route.params.shopid]
-    },
-  },
-
   created: function() {
-    const reviewRef = db.ref('review').once('value', (snapshot) => {
-      const receivedreview = snapshot.val()
-      this.fireReviews = receivedreview
+    const reviewRef = db.ref(`review/${this.$route.params.id}`)
+    reviewRef.once('value',(snapshot) => {
+      const data = snapshot.val()
+      if(!!data) {
+        this.text = data.content;
+        this.user = data.username;
+        this.date = data.date;
+      } else {
+        this.$router.go(-1)
+      }
+      
     })
-    const shopRef = db.ref('shop').once('value', (snapshot) => {
-      const receivedShop = snapshot.val()
-      this.fireShop = receivedShop
+    const shopRef = db.ref(`shop/${this.$route.params.shopid}`)
+    shopRef.once('value', (snapshot) => {
+      const data = snapshot.val()
+      if(!!data) {
+        this.title = data.name;
+      } else {
+        this.$router.go(-1)
+      }
+      
     })
   },
 }

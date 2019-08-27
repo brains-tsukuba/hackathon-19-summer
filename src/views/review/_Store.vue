@@ -1,15 +1,18 @@
 <template>
   <v-container fluid>
-    <div class="display-2 text-center">
-      Shop Number .{{ $route.params.shopid }}
-    </div>
-
     <div class="display-2 text-center">{{ title }}</div>
-
-    <p class="text-justify" v-for="(review, id) in reviews" :key="id">
+    <ul>
+    <li class="text-justify" v-for="(review, id) in reviews" :key="id">
+    <router-link tag="a" :to="`/review/${$route.params.shopid}/${review.key}`">
       投稿者： {{ review.user }}さん<br />
       評価： {{ review.item }}
-    </p>
+      日時: {{review.date}}
+    </router-link>
+    </li>
+    </ul>
+    <div v-if="Object.keys(reviews).length === 0">
+      <div>{{ title }}のレビューはありません</div>
+    </div>
   </v-container>
 </template>
 
@@ -20,20 +23,10 @@ export default {
   name: 'ReviewByStore',
   data: function() {
     return {
-      title: 'ラーメン屋〇〇',
-      reviews: [
-        { user: 'A', item: '美味しかった' },
-        { user: 'B', item: 'あまり好みじゃない' },
-        { user: 'C', item: '落ち着いた雰囲気だった' },
-        { user: 'D', item: 'また行きたい' },
-      ],
+      title: '',
+      reviews: [],
     }
   },
-  // computed: {
-  //   shopName: function() {
-  //     return this.shop[this.$route.params.shopid];
-  //   }
-  // },
   created: function() {
     const reviewRef = db.ref('review')
     reviewRef
@@ -42,7 +35,8 @@ export default {
       .once('value', (snapshot) => {
         const received = snapshot.val()
         this.reviews = Object.entries(received).map(([key, value]) => ({
-          user: 'anonymus',
+          key,
+          user: value.username,
           item: value.content,
           date: value.date,
         }))
