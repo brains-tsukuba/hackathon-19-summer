@@ -1,5 +1,5 @@
 <template>
-  <div>login component</div>
+  <div></div>
 </template>
 
 <script>
@@ -10,29 +10,23 @@ import { auth, provider } from '@/main'
 export default {
   name: 'Login',
   created() {
-    auth.signInWithPopup(provider).then((result) => {
-      console.log(this.$store)
-      // This gives you a the Twitter OAuth 1.0 Access Token and Secret.
-      // You can use these server side with your app's credentials to access the Twitter API.
-      var token = result.credential.accessToken;
-      var secret = result.credential.secret;
-      // The signed-in user info.
-      var user = result.user;
-      // ...
-    }).catch(function(error) {
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      // The email of the user's account used.
-      var email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      var credential = error.credential;
-      // ...
-  });
+    if(!this.authenticated) {
+      auth.signInWithPopup(provider).then((result) => {
+      const token = result.credential.accessToken;
+      const username = result.additionalUserInfo.username;
+      this.$store.dispatch('auth/login',{token,username})
+      localStorage.setItem('access_token',result.credential.accessToken)
+      localStorage.setItem('username',result.additionalUserInfo.username)
+      }).catch(function(error) {
+        console.error(error)
+      });
+    }
+    this.$router.go(-1)
+    
   },
   computed: {
     ...mapGetters('auth', {
-      apiKey: "apiKey",
+      authenticated: "authenticated",
       username: "username"
     })
   }
