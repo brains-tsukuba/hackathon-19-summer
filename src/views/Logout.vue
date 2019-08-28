@@ -9,11 +9,17 @@ import { auth, provider } from '@/main'
 
 export default {
   name: 'Logout',
-  created() {
-    localStorage.removeItem('access_token')
-    localStorage.removeItem('username')
-    this.$store.dispatch('auth/logout')
-    this.$router.go(-1)
+  mounted() {
+    auth.signOut().then(() => {
+      localStorage.removeItem('access_token')
+      localStorage.removeItem('username')
+      this.$store.dispatch('auth/logout')
+    }).catch(function(error) {
+      console.log(error)
+      console.error('ログアウトに失敗しました')
+    }).finally(() => {
+      this.$router.push("/")
+    });
   },
   computed: {
     ...mapGetters('auth', {
