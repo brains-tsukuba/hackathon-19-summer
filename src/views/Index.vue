@@ -1,104 +1,74 @@
 <template>
-  <div>
-    <v-parallax src="https://cdn.vuetifyjs.com/images/parallax/material.jpg">
-      <v-layout align-center column justify-center>
-        <h1 class="display-2">めしつくば</h1>
-      </v-layout>
+  <v-container fluid class="pa-0">
+    <v-parallax src="https://i.imgur.com/u2iotgt.jpg" style="height: 28rem">
+      <div class="text-center nico black--text" style="font-size: 64px">めしつくば</div>
+      <div class="text-center nico white--text" style="font-size: 48px">つくばのめしのレビューサイト</div>
     </v-parallax>
+    <v-container fluid class="text-center mb-5">
+      <v-btn large elevation="0" rounded class="secondary white--text" to="/review" style="box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.25) !important">
+        みんなのとうこうをみる
+      </v-btn>
+    </v-container>
     <v-layout wrap>
-      <v-flex my-5 xs10 offset-xs1>
-        <div class="headline font-weight-bold justify-center">
-          <h2 class="font-weight-bold">ABOUT</h2>
-        </div>
-        <v-card>
-          <v-card-text>
-            <v-card-text
-              class="subheading font-weight-bold justify-center">
-            つくば市内の飲食店のレビューサイト<br>
-            飲食店のレビューを投稿・閲覧できるよ！<br>
-            </v-card-text>
-          </v-card-text>
+      <v-flex my-5 xs10 offset-xs1 class="headline">
+        <v-card elevation="1" class="pb-4 text-center round">
+          <v-card-title class="font-weight-bold justify-center">せつめい</v-card-title>
+          <v-divider></v-divider>
+          <v-card-text class="Roboto mt-2">つくば市内の飲食店のレビューサイト</v-card-text>
+          <v-card-text class="Roboto mb-2">飲食店のレビューを投稿・閲覧できるよ！</v-card-text>
         </v-card>
       </v-flex>
-      <v-flex my-5 xs10 offset-xs1>
-        <h2 class="headline font-weight-bold justify-center">〜投稿方法〜</h2>
-        <v-card>
-          <v-card-text>
-            <v-card-text
-              class="subheading font-weight-bold justify-center"
-            >
-            <p>
-            ①Twitterアカウントを用意してね！<br>
-            ②ページ上部のPOSTボタンをクリック！<br>
-            ③お店の名前を選択！レビューを書いたら送信！</p>
-
-            </v-card-text>
-          </v-card-text>
+      <v-flex my-5 xs10 offset-xs1 class="headline">
+        <v-card elevation="1" class="pb-4 text-center round how_to_use">
+          <v-card-title class="font-weight-bold justify-center">つかいかた</v-card-title>
+          <v-divider></v-divider>
+          <v-card-text class="Roboto mt-2">①Twitterアカウントを用意してね！</v-card-text>
+          <v-card-text class="Roboto">②ページ上部のとうこうボタンをクリック！</v-card-text>
+          <v-card-text class="Roboto mb-2">③お店の名前を選択！レビューを書いたら送信！</v-card-text>
         </v-card>
       </v-flex>
     </v-layout>
 
-  </div>
+  </v-container>
 </template>
 
 <script>
 </script>
 
 <style lang="scss">
-.display-2{
-  width: 93px;
-  height: 24px;
-  left: 142px;
-  top: 299px;
-  font-family: Nico Moji;
+.v-content__wrap {
+ background-color:#E4FFEC;
+}
+.round {
+  border-radius: 1rem;
+}
+
+.headline v-card-title{
+  font-family: Nico Moji !important;
   font-style: normal;
   font-weight: normal;
-  font-size: 50px;
-  line-height: 24px;
+  font-size: 30px;
+  line-height: 30px;
   display: flex;
   align-items: center;
-  text-align: center;
   color: #000000;
+  letter-spacing:2px;
 }
 
-.headline{
-  width: 165px;
-  height: 40px;
-  left: 106px;
-  top: 294px;
-  background: rgba(255, 255, 255, 0.25);
+.Roboto {
+  font-family: Roboto !important;
+}
+.nico {
+  font-family: Nico Moji !important;
 }
 
-.headline h2{
-  width: 93px;
-  height: 24px;
-  left: 142px;
-  top: 299px;
-  font-family: Nico Moji;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 24px;
-  line-height: 24px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  color: #000000;
+.background-white{
+  background:white;
+  margin-top:30px;
+  border-radius: 1rem;
+}
+.how_to_use{
+  margin-bottom:30px;
 }
 
-.subheading{
-  font-weight: bold;
-  font-size: 20px;
-  line-height: 60px;
-  background: rgba(255, 255, 255);
-}
-
-.subheading p{
-  font-family: Roboto;
-  font-style: normal;
-  
-  display: flex;
-  
-  text-align: center;
-  color: #000000;
-}
 </style>

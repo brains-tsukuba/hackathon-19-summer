@@ -6,6 +6,7 @@ Vue.use(Vuex);
 /** 元データ */
 const state = {
   access_token: "",
+  secret_token: "",
   username: "",
 }
 
@@ -15,6 +16,9 @@ const getters = {
    *  || state.getters.apiKey */
   accessToken: (state, getters) => {
     return state.access_token
+  },
+  secretToken:  (state, getters) => {
+    return state.secret_token
   },
   authenticated: (state, getters) => {
     return state.access_token !== ""
@@ -31,6 +35,9 @@ const mutations = {
   updateAccessToken(state, key) {
     state.access_token = key
   },
+  updateSecretToken(state, key) {
+    state.secret_token = key
+  },
   updateUserName(state,name) {
     state.username = name;
   }
@@ -45,12 +52,14 @@ store.dispatch('incrementAsync', {
 }) 
 */
 const actions = {
-  login({commit},{token,username}) {
+  login({commit},{token,secret,username}) {
     commit('updateAccessToken',token)
+    commit('updateSecretToken',secret)
     commit('updateUserName',username)
   },
   logout({commit}) {
     commit('updateAccessToken','')
+    commit('updateSecretToken','')
     commit('updateUserName', '')
   }
 }

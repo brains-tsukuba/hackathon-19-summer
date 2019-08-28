@@ -1,20 +1,8 @@
 {
   "name": "めしつくば",
   "short_name": "飯つくば",
-  "icons": [
-    {
-      "src": "./img/icons/android-chrome-192x192.png",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "./img/icons/android-chrome-512x512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ],
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#ccff90",
+  "background_color": "#FF3579",
   "theme_color": "#ff4081"
 }

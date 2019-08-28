@@ -22,11 +22,6 @@ export default new Router({
       component: Index
     },
     {
-      path: "/about",              /** 使い方 */
-      name: "about",
-      component: About
-    },
-    {
       path: "/post",               /** 投稿・共有画面 */
       name: "post",
       component: Post
