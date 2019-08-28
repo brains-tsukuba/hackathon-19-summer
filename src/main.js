@@ -2,17 +2,13 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import "./registerServiceWorker";
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/database';
 import vuetify from './plugins/vuetify';
 import vuefire from './plugins/vuefire';
 import store from './store'
 import config from "@/../config.js"
-
-// https://firebase.google.com/docs/web/setup?hl=ja
-// https://firebase.google.com/docs/database/security/?hl=ja
-// const firebaseConfig = {
-  
-// };
 
 const app = firebase.initializeApp(config);
 export const db = app.database()
