@@ -5,19 +5,18 @@
       <router-link tag="span" to="/" class="cursor-pointer">めしつくば</router-link>
     </v-toolbar-title>
     <v-spacer></v-spacer>
-    <v-app-bar-nav-icon class="d-flex d-sm-none" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-    <v-btn class="mr-2 d-none d-sm-flex" to="/post">とうこうする</v-btn>
-    <v-btn class="mr-2 d-none d-sm-flex" to="/review">レビューいちらん</v-btn>
-    <v-btn class="mr-2 d-none d-sm-flex" v-if="authenticated">なまえ: {{ username }}さん</v-btn>
-    <v-btn class="mr-2 d-none d-sm-flex" v-if="authenticated" tag="a" to="/logout">ろぐあうと</v-btn>
-    <v-btn class="mr-2 d-none d-sm-flex" v-else tag="a" to="/login">ろぐいん</v-btn>
+    <v-app-bar-nav-icon class="d-flex d-md-none" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+    <v-btn class="mr-2 d-none d-md-flex" to="/post">とうこうする</v-btn>
+    <v-btn class="mr-2 d-none d-md-flex" to="/review">レビューいちらん</v-btn>
+    <v-btn class="mr-2 d-none d-md-flex" v-if="authenticated">なまえ: {{ username }}さん</v-btn>
+    <v-btn class="mr-2 d-none d-md-flex" v-if="authenticated" tag="a" to="/logout">ろぐあうと</v-btn>
+    <v-btn class="mr-2 d-none d-md-flex" v-else tag="a" to="/login">ろぐいん</v-btn>
     </v-app-bar>
 
     <v-container>
     <v-navigation-drawer
       v-model="drawer"
       absolute
-      right
       temporary
     >
       <v-list
@@ -25,35 +24,11 @@
         dense
       >
         <v-list-item-group>
-          <v-list-item>
-            <v-list-item-title>
-              <v-btn to="/post">とうこうする</v-btn>
-            </v-list-item-title>
-          </v-list-item>
-
-          <v-list-item>
-            <v-list-item-title>
-              <v-btn to="/review">レビューいちらん</v-btn>
-            </v-list-item-title>
-          </v-list-item>
-
-          <v-list-item v-if="authenticated">
-            <v-list-item-title>
-              <v-btn>なまえ: {{ username }}さん</v-btn>
-            </v-list-item-title>
-          </v-list-item>
-
-          <v-list-item v-if="authenticated">
-            <v-list-item-title>
-              <v-btn tag="a" to="/logout">ろぐあうと</v-btn>              
-            </v-list-item-title>
-          </v-list-item>
-
-          <v-list-item v-else>
-            <v-list-item-title>
-              <v-btn tag="a" to="/login">ろぐいん</v-btn>              
-            </v-list-item-title>
-          </v-list-item>
+          <v-list-item to="/post">とうこうする</v-list-item>
+          <v-list-item to="/review">レビューいちらん</v-list-item>
+          <v-list-item v-if="authenticated">なまえ: {{ username }}さん</v-list-item>
+          <v-list-item v-if="authenticated" to="/logout">ろぐあうと</v-list-item>
+          <v-list-item v-else to="/login">ろぐいん</v-list-item>
         </v-list-item-group>
       </v-list>
     </v-navigation-drawer>
@@ -67,7 +42,7 @@
       <v-card>
         <v-footer absolute color="primary" class="font-weight-medium">
           <v-col cols="12" class="copyright">
-            <p class="footer-left">COPYRIGHTーBrains</p>
+            <p class="footer-left">COPYRIGHTーBrains<p>
             <p class="footer-right">ALL RIGHTS RESERVED.</p>
           </v-col>
         </v-footer>
@@ -83,7 +58,7 @@ export default {
   name: 'App',
   data: function() {
     return {
-      drawer: false
+      drawer: null
     }
   },
   computed: {
@@ -105,6 +80,9 @@ export default {
 </script>
 
 <style lang="scss">
+.v-content__wrap {
+ background-color:#E4FFEC;
+}
   a{
     text-decoration:none;
     color:#000 !important;
@@ -137,4 +115,5 @@ export default {
   .cursor-pointer{
     cursor:pointer;
   }
+
 </style>

@@ -1,16 +1,19 @@
 <template>
   <v-container fluid>
-    <div class="display-2 text-center">レビュー一覧</div>
-    <ul>
-      <li class="text-justify" v-for="(review, id) in reviews" :key="id">
-        <router-link tag="a" :to="`/review/${review.shopid}/${review.id}`">
-          投稿者： {{ review.username }}さん<br />
-          店名:  {{review.shopname}}
-          評価： {{ review.content }}
-          日時: {{review.date}}
-        </router-link>
-      </li>
-    </ul>
+    <v-flex xs12 md10 offset-md1>
+    <div class="background">
+      <v-card class="my-5 pa-2 round" elevation="0">
+        <v-card-title class="text-center justify-center mb-2">レビュー</v-card-title>
+        <v-divider></v-divider>
+        <div class="list my-4" v-for="(review, id) in sortedReviews" :key="id">
+          <router-link tag="a" :to="`/review/${review.shopid}/${review.id}`">
+            <div class="content Roboto mx-auto pa-4 body-1">評価　： {{ review.content }} in {{review.shopname}}</div>
+            <div class="content Roboto mx-auto pa-4 caption">投稿者： {{ review.username }}さん　投稿日： {{review.date}}</div>
+          </router-link>
+        </div>
+      </v-card>
+    </div>
+    </v-flex>
   </v-container>
 </template>
 
@@ -24,8 +27,17 @@ export default {
       reviews: [],
     }
   },
+  computed: {
+    sortedReviews: function() {
+      const arr = this.reviews;
+      const newArr = arr.sort(function(a,b){
+        return new Date(b.date) - new Date(a.date);
+      })
+      return newArr;
+    }
+  },
   mounted: function() {
-    const reviewRef = db.ref('review')
+    const reviewRef = db.ref('review').orderByChild('date').limitToLast(100)
     reviewRef.once('value',(snapshot) => {
       const data = snapshot.val()
       for(const key in data) {
@@ -44,22 +56,45 @@ export default {
         })
         
       }
-
-
     })
   },
 }
 </script>
 
 <style lang="scss">
-.display-2 {
-  margin: 50px 0;
-  font-family: serif;
-}
-.text-justify {
-  border: solid 2px #999;
-  border-radius: 2px;
-  margin-top: 75px;
+.list{
   padding: 15px;
+  font-family: Roboto !important;
 }
+.text-center{
+  font-family: Nico Moji;
+  font-size:50px;
+  margin-top:35px;
+  letter-spacing:2px;
+}
+li{
+  list-style:none;
+}
+a{
+  display:block;
+  margin:0 auto;
+  max-width:600px;
+  border: solid 2px #999;
+  border-radius: 4px;
+  text-decoration:none;
+}
+/*.content{
+  width:70%;
+}
+.all-vue{
+  margin-bottom:50px;
+}
+@media(min-width: 480px) {
+  .all-vue {
+    margin: auto;
+  }
+  .background{
+    width:100vw;
+  }
+}*/
 </style>

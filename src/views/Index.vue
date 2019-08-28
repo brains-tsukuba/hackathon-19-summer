@@ -2,10 +2,10 @@
   <v-container fluid class="pa-0">
     <v-parallax src="https://i.imgur.com/u2iotgt.jpg" style="height: 28rem">
       <div class="text-center nico black--text" style="font-size: 64px">めしつくば</div>
-      <div class="text-center nico white--text" style="font-size: 48px">つくばのめしのレビューサイト</div>
+      <div class="text-center nico white--text" style="font-size: 48px">つくばのめしのサイト</div>
     </v-parallax>
     <v-container fluid class="text-center mb-5">
-      <v-btn large elevation="0" rounded class="secondary white--text" to="/review" style="box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.25) !important">
+      <v-btn large elevation="0" rounded class="secondary white--text" to="/review" style="box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.25) !important; min-height: 4rem; min-width: 20vw">
         みんなのとうこうをみる
       </v-btn>
     </v-container>
@@ -25,6 +25,7 @@
           <v-card-text class="Roboto mt-2">①Twitterアカウントを用意してね！</v-card-text>
           <v-card-text class="Roboto">②ページ上部のとうこうボタンをクリック！</v-card-text>
           <v-card-text class="Roboto mb-2">③お店の名前を選択！レビューを書いたら送信！</v-card-text>
+          <v-card-text><a href="http://brains-tsukuba.com">製作 - Brains Tsukuba</a></v-card-text>
         </v-card>
       </v-flex>
     </v-layout>
@@ -36,9 +37,6 @@
 </script>
 
 <style lang="scss">
-.v-content__wrap {
- background-color:#E4FFEC;
-}
 .round {
   border-radius: 1rem;
 }

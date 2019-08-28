@@ -1,15 +1,17 @@
 <template>
   <v-container fluid>
-    <div class="display-2 text-center">{{ title }}</div>
-    <ul>
-    <li class="text-justify" v-for="(review, id) in reviews" :key="id">
+    <v-flex xs12 md10 offset-md1>
+    <v-card class="my-5 pa-2 round" elevation="0">
+      <v-card-title class="text-center justify-center mb-2 list">{{ title }}</v-card-title>
+      <v-divider></v-divider>
+      <div class="list my-4" v-for="(review, id) in sortedReviews" :key="id">
     <router-link tag="a" :to="`/review/${$route.params.shopid}/${review.key}`">
-      投稿者： {{ review.user }}さん<br />
-      評価： {{ review.item }}
-      日時: {{review.date}}
-    </router-link>
-    </li>
-    </ul>
+          <div class="contents content pa-4 body-1 list">評価：  {{review.item}}</div>
+          <div class="contents content pa-4 caption list">投稿者： {{ review.user }}さん 投稿日： {{review.date}}</div>
+        </router-link>
+      </div>
+    </v-card>
+    </v-flex>
     <div v-if="Object.keys(reviews).length === 0">
       <div>{{ title }}のレビューはありません</div>
     </div>
@@ -25,6 +27,15 @@ export default {
     return {
       title: '',
       reviews: [],
+    }
+  },
+  computed: {
+    sortedReviews: function() {
+      const arr = this.reviews;
+      const newArr = arr.sort(function(a,b){
+        return new Date(b.date) - new Date(a.date);
+      })
+      return newArr;
     }
   },
   created: function() {
@@ -61,4 +72,5 @@ export default {
   margin-top: 75px;
   padding: 15px;
 }
+
 </style>

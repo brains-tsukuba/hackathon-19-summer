@@ -30,7 +30,7 @@
          </v-card>
         <v-textarea
           filled
-          label="Review"
+          label="感想"
           auto-grow
           v-model="reviewText"
           class="textarea"
@@ -118,7 +118,7 @@ export default {
         date: ymd,
         username: this.username
       })
-      const tweet = `${shopName}のレビューを投稿しました。レビュー内容はこちら！ https://meshitsukuba.web.app/review/${key}/${newRef.key}`;
+      const tweet = `${shopName}のレビューを投稿しました。レビュー内容はこちら！ https://meshitsukuba.web.app/ogp/${key}/${newRef.key}`;
       if (this.tweet) {
         await fetch(`https://script.google.com/macros/s/AKfycbzO8YEvSj_CpVWtknt61y3BA7Mz58ut2WEcVRV3uDVzxQ0W5K-u/exec?at=${this.accessToken}&sc=${this.secretToken}&ct=${encodeURIComponent(tweet)}`)
       }
@@ -153,7 +153,7 @@ label {
 .shop_select{
   border: solid 2px #999;
   margin-top:30px;
-  border-radius: 0.5rem;
+  border-radius: 0.6rem;
   margin-bottom:40px;
 }
 

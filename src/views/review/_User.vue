@@ -1,6 +1,6 @@
 <template>
   <v-container fluid>
-    <v-flex xs10 offset-xs1>
+    <v-flex xs12 md10 offset-md1>
     <v-card class="my-5 pa-2 round" elevation="0">
       <v-card-title class="text-center justify-center mb-2 review-title list" style="line-height: 100%">{{ user }}さんの<br><router-link tag="strong" :to="`/review/${$route.params.shopid}`" class="secondary cursor-pointer">{{ title }}</router-link>についてのレビュー</v-card-title>
       <v-divider></v-divider>
